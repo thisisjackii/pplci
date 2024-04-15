@@ -71,6 +71,8 @@
                 <td>
                     <a href="<?php echo base_url('view/' . $row['nim']); ?>">View</a>
                     |
+                    <a href="<?php echo base_url('update/' . $row['nim']); ?>">Update</a>
+                    |
                     <a href="<?php echo base_url('delete/' . $row['nim']); ?>">Delete</a>
                 </td>
             </tr>

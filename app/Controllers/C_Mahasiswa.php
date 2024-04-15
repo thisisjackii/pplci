@@ -63,4 +63,35 @@ class C_Mahasiswa extends BaseController
             echo "Data Gagal Dihapus";
         }
     }
+
+    public function updateView($id)
+    {
+        $model = new M_Mahasiswa();
+        $data['mahasiswa'] = $model->fetchByID($id);
+
+        if ($data['mahasiswa'] === null) {
+            // Handle scenario where record is not found
+            return redirect()->to(base_url('/'));
+        }
+
+        return view('view_update_mahasiswa', $data);
+    }
+
+    public function update($id)
+    {
+        $nama = $this->request->getPost('nama');
+        $umur = $this->request->getPost('umur');
+
+        $model = new M_Mahasiswa();
+        $data = [
+            'nama' => $nama,
+            'umur' => $umur
+        ];
+
+        if ($model->updateData($id, $data)) {
+            return redirect()->to(base_url('/'));
+        } else {
+            echo "Update failed";
+        }
+    }
 }

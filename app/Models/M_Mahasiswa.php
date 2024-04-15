@@ -44,4 +44,17 @@ class M_Mahasiswa extends Model
         $this->db->query($query, [$id, $nama, $umur]);
         return $this->db->affectedRows() > 0;
     }
+
+    public function updateData($nim, $data)
+    {
+        $fields = '';
+        foreach ($data as $key => $value) {
+            $fields .= "$key = '$value', ";
+        }
+        $fields = rtrim($fields, ', ');
+
+        $query = "UPDATE $this->table SET $fields WHERE nim = ?";
+        $this->db->query($query, [$nim]);
+        return $this->db->affectedRows() > 0;
+    }
 }
